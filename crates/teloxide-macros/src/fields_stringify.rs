@@ -36,7 +36,9 @@ pub(crate) fn impl_stringify_args_unnamed(
             if stringified.contains(fields_separator) {
                 return ::std::result::Result::Err(StringifyError::SeparatorInUnnamedArgument {
                     enum_variant: std::concat!(#self_string_name, "::", #string_variant).to_owned(),
-                    field: #i
+                    stringified_data: stringified,
+                    separator: fields_separator.to_owned(),
+                    field: #i,
                 });
             }
             stringified
@@ -66,7 +68,9 @@ pub(crate) fn impl_stringify_args_named(
             if stringified.contains(fields_separator) {
                 return ::std::result::Result::Err(StringifyError::SeparatorInNamedArgument {
                     enum_variant: ::std::concat!(#self_string_name, "::", #string_variant).to_owned(),
-                    argument: ::std::stringify!(#name).to_string()
+                    stringified_data: stringified,
+                    separator: fields_separator.to_owned(),
+                    argument: ::std::stringify!(#name).to_string(),
                 });
             }
             stringified
